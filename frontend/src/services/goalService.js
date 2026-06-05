@@ -1,44 +1,30 @@
 import API from "./api";
 
-// Get all goals
 export const getGoals = async () => {
-  const response = await API.get(
+  const res = await API.get(
     "/goals"
   );
 
-  return response.data;
+  return res.data;
 };
 
-// Create goal
-export const createGoal = async (
-  goalData
-) => {
-  const response = await API.post(
-    "/goals",
-    goalData
-  );
+export const createGoal =
+  async (goalData) => {
+    const res =
+      await API.post(
+        "/goals",
+        goalData
+      );
 
-  return response.data;
-};
+    return res.data;
+  };
 
-// Update goal progress
-export const updateGoal = async (
-  id,
-  goalData
-) => {
-  const response = await API.put(
-    `/goals/${id}`,
-    goalData
-  );
+export const deleteGoal =
+  async (id) => {
+    const res =
+      await API.delete(
+        `/goals/${id}`
+      );
 
-  return response.data;
-};
-
-// Delete goal
-export const deleteGoal = async (id) => {
-  const response = await API.delete(
-    `/goals/${id}`
-  );
-
-  return response.data;
-};
+    return res.data;
+  };

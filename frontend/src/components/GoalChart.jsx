@@ -20,29 +20,34 @@ ChartJS.register(
 export default function GoalChart({
   goals,
 }) {
-  const labels = goals.map(
-    (goal) => goal.goalType
-  );
-
-  const progress = goals.map(
-    (goal) =>
-      (
-        (goal.currentValue /
-          goal.targetValue) *
-        100
-      ).toFixed(0)
-  );
-
   const data = {
-    labels,
+    labels: goals.map(
+      (g) => g.goalType
+    ),
+
     datasets: [
       {
         label:
-          "Goal Completion %",
-        data: progress,
+          "Target Value",
+
+        data: goals.map(
+          (g) =>
+            g.targetValue
+        ),
       },
     ],
   };
 
-  return <Bar data={data} />;
+  return (
+    <div className="h-64">
+      <Bar
+        data={data}
+        options={{
+          responsive: true,
+          maintainAspectRatio:
+            false,
+        }}
+      />
+    </div>
+  );
 }

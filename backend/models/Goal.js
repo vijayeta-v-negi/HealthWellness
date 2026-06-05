@@ -3,13 +3,21 @@ const mongoose = require("mongoose");
 const goalSchema = new mongoose.Schema(
   {
     userId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "UserHealth",
+      type:
+        mongoose.Schema.Types.ObjectId,
+      ref: "User",
       required: true,
     },
 
     goalType: {
       type: String,
+      enum: [
+        "Steps",
+        "Calories Burned",
+        "Calories Consumed",
+        "Water Intake",
+        "Workout Duration",
+      ],
       required: true,
     },
 
@@ -18,9 +26,13 @@ const goalSchema = new mongoose.Schema(
       required: true,
     },
 
-    currentValue: {
-      type: Number,
-      default: 0,
+    startDate: {
+      type: Date,
+      default: Date.now,
+    },
+
+    endDate: {
+      type: Date,
     },
   },
   {
